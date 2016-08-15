@@ -19,7 +19,12 @@
       <script src="{% static 'javascripts/respond.min.js' %}"></script>
     <![endif]-->
 
-    <script src="{% static 'javascripts/angular.min.js' %}" charset="utf-8"></script>
+    <script src="{% static 'javascripts/jquery.min.js' %}"></script>
+    <script src="{% static 'javascripts/angular.min.js' %}"></script>
+
+    <script src="{% static 'app/autopy.js' %}"></script>
+    <script src="{% static 'app/vehicle-types/vehicle-types.module.js' %}"></script>
+    <script src="{% static 'app/vehicle-types/vehicle-types.component.js' %}"></script>
   </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -45,12 +50,9 @@
     </nav>
 
     <div id="container" class="container">
-      {% verbatim %}
-        {{ 'Hello ' + 'world!' }}
-      {% endverbatim %}
+      <vehicle-types-list></vehicle-types-list>
     </div>
 
-    <script src="{% static 'javascripts/jquery.min.js' %}"></script>
     <script src="{% static 'javascripts/bootstrap.min.js' %}"></script>
   </body>
 </html>
