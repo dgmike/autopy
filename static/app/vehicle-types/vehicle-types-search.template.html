@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a href="#">Novo tipo de veículo</a></li>
+    </ul>
+    <form class="navbar-form navbar-right" role="search">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Nome">
+        <span class="input-group-btn">
+          <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+        </span>
+      </div>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a data-toggle="collapse" href="#advanced-form" aria-expanded="false">Busca Avançada</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div id="advanced-form" class="panel panel-default collapse">
+  <div class="panel-heading">
+    <h3 class="panel-title">Busca avançada</h3>
+  </div>
+  <div class="panel-body">
+    <form class="" action="" method="get">
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="advanced-form-id">ID</label>
+          <input type="text" class="form-control" id="advanced-form-id" placeholder="">
+        </div>
+        <div class="form-group col-md-8">
+          <label for="advanced-form-name">Nome</label>
+          <input type="text" class="form-control" id="advanced-form-name" placeholder="">
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary pull-right">Buscar</button>
+      <br class="clearfix"/>
+    </form>
+  </div>
+</div>
