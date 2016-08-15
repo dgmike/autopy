@@ -9,9 +9,10 @@ virtualenv:
 
 requiriments:
 	${PIP} install -r ./requiriments.txt
+	bower install
 
 clean:
-	rm -rf ./venv
+	rm -rf ./venv ./bower_components
 
 run:
 	${PYTHON3} ./manage.py runserver
