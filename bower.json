@@ -20,6 +20,7 @@
     "angular": "^1.5.8",
     "html5shiv": "html5shiv-complete#^3.7.0",
     "respond": "respondJS#^1.4.2",
-    "angular-route": "^1.5.8"
+    "angular-route": "^1.5.8",
+    "sweetalert": "^1.1.3"
   }
 }
