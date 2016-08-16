@@ -7,10 +7,16 @@ angular
     function config($locationProvider, $routeProvider) {
       $locationProvider.hashPrefix('!');
 
-      $routeProvider.
-        when('/vehicle-types', {
+      $routeProvider
+        .when('/vehicle-types', {
           template: '<vehicle-types-list></vehicle-types-list>'
-        }).
-        otherwise('/vehicle-types');
+        })
+        .when('/vehicle-types/new', {
+          template: '<vehicle-types-new></vehicle-types-new>'
+        })
+        .when('/vehicle-types/:id/edit', {
+          template: '<vehicle-types-edit></vehicle-types-edit>'
+        })
+        .otherwise('/vehicle-types');
     }
   ]);

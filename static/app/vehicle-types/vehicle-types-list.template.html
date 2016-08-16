@@ -6,7 +6,7 @@
 
 <hr />
 
-<table class="table table-striped table-bordered table-hover table-condensed">
+<table class="table table-bordered table-hover table-condensed">
   <col style="width:5%">
   <col style="width:70%">
   <col style="width:15%">
@@ -23,10 +23,10 @@
       <td>{{ vehicleType.name }}</td>
       <td>
         <div class="btn-group">
-          <a href="#" class="btn btn-sm btn-default">
+          <a href="#!/vehicle-types/{{ vehicleType.id }}/edit" class="btn btn-sm btn-default">
             <i class="glyphicon glyphicon-edit"></i>
           </a>
-          <a href="#" class="btn btn-sm btn-danger">
+          <a href="#" class="btn btn-sm btn-danger" ng-click="$ctrl.intentToRemove(vehicleType.id)">
             <i class="glyphicon glyphicon-trash"></i>
           </a>
         </div>
