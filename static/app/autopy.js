@@ -1,5 +1,6 @@
 'use strict';
 
-angular.module('autopy', [
-  'vehicleTypes'
-]);
+angular
+  .module('autopy',
+    ['ngRoute', 'vehicleTypes']
+  );
