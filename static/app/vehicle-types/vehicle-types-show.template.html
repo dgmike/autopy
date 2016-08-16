@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1>Tipos de veículos</h1>
+</div>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="fluid-container">
+    <ul class="navbar-nav nav">
+      <li>
+        <a href="#!/vehicle-types">
+          <i class="glyphicon glyphicon-arrow-left"></i>
+          Listagem de tipos de veículos
+        </a>
+    </ul>
+  </li>
+  </div>
+</nav>
+
+<dl class="dl-horizontal">
+  <dt>ID</dt>
+  <dd>{{$ctrl.vehicleType.id}}</dd>
+
+  <dt>Nome</dt>
+  <dd>{{$ctrl.vehicleType.name}}</dd>
+</dl>
+
+<hr />
+
+<p>
+  <a href="#!/vehicle-types/{{ $ctrl.vehicleType.id }}/edit" class="btn btn-default">Editar</a>
+  <a href="javascript:void(0)" class="btn btn-sm btn-danger" ng-click="$ctrl.intentToRemove(vehicleType.id)">Apagar</a>
+</p>

@@ -17,6 +17,9 @@ angular
         .when('/vehicle-types/:id/edit', {
           template: '<vehicle-types-edit></vehicle-types-edit>'
         })
+        .when('/vehicle-types/:id', {
+          template: '<vehicle-types-show></vehicle-types-show>'
+        })
         .otherwise('/vehicle-types');
     }
   ]);

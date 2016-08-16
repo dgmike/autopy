@@ -19,7 +19,7 @@
   </thead>
   <tbody>
     <tr data-ng-repeat="vehicleType in $ctrl.vehicleTypes">
-      <td>{{ vehicleType.id }}</td>
+      <td><a href="#!/vehicle-types/{{ vehicleType.id }}">{{ vehicleType.id }}</a></td>
       <td>{{ vehicleType.name }}</td>
       <td>
         <div class="btn-group">
