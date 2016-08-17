@@ -4,13 +4,12 @@ angular
   .module('vehicleTypes')
   .component('vehicleTypesList', {
     templateUrl: 'static/app/vehicle-types/vehicle-types-list.template.html',
-    controller: function vehicleTypesList() {
+    controller: function vehicleTypesListController($http) {
       self = this;
 
-      self.vehicleTypes = [
-        { id: 1, name: 'Carro' },
-        { id: 2, name: 'Moto' }
-      ];
+      $http.get('/api/vehicle-types?page=1').then(function (response) {
+        self.vehicleTypes = response.data._embedded;
+      });
 
       self.intentToRemove = function intentToRemove(id) {
         swal(
