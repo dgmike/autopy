@@ -7,7 +7,7 @@ angular
     controller: function vehicleTypesListController($http) {
       self = this;
 
-      $http.get('/api/vehicle-types?page=1').then(function (response) {
+      $http.get('/api/vehicle-types').then(function (response) {
         self.vehicleTypes = response.data._embedded;
       });
 

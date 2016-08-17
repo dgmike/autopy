@@ -3,5 +3,5 @@ from django.views.generic import TemplateView
 from api.views import *
 
 urlpatterns = [
-  url(r'^vehicle-types/?$', vehicle_types_root)
+  url(r'^vehicle-types/?$', VehicleTypeRootController.as_view())
 ]
