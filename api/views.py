@@ -7,9 +7,7 @@ from .request_list import RequestList
 
 class VehicleTypeRootController(View, RequestList):
   def get(self, request):
-    per_page = self.per_page(request.GET)
-    current_page = self.current_page(request.GET)
-    start = (current_page - 1) * per_page
+    per_page, current_page, start = self.pagination_args(request.GET)
 
     result = VehicleType.objects.order_by('name')
 

@@ -18,5 +18,14 @@ class RequestList():
     except:
       return 10
 
-  def start_at(self):
-    return 0
+  # TODO: implement tests
+  def start_at(self, current_page, per_page):
+    return (current_page - 1) * per_page
+
+  # TODO: implement tests
+  def pagination_args(self, query = False):
+    per_page = self.per_page(query)
+    current_page = self.current_page(query)
+    start_at = self.start_at(current_page, per_page)
+
+    return (per_page, current_page, start_at)
