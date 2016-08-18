@@ -1,4 +1,4 @@
-class RequestList():
+class RequestListController():
   """Module to fetch and filter request"""
   max_per_page = 100
 

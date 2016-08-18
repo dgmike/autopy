@@ -4,11 +4,11 @@ sys.path.append("..")
 from django.test import TestCase
 from django.test import tag
 from django.http.request import QueryDict
-from api.request_list import RequestList
+from api.request_list_controller import RequestListController
 
-class RequestListTestCase(TestCase):
+class RequestListControllerTestCase(TestCase):
   def setUp(self):
-    self.subject = RequestList()
+    self.subject = RequestListController()
 
   @tag('core')
   def test_respond_current_page(self):
