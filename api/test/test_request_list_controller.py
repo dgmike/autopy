@@ -62,5 +62,26 @@ class RequestListControllerTestCase(TestCase):
     self.assertEqual(200, self.subject.per_page(QueryDict('per_page=201')))
 
   @tag('core')
-  def start_at(self):
+  def test_start_at_default_is_zero(self):
     self.assertEqual(0, self.subject.start_at())
+
+  @tag('core')
+  def test_start_at_must_be_ten_when_page_is_two(self):
+    self.assertEqual(10, self.subject.start_at(2))
+
+  @tag('core')
+  def test_start_at_must_be_twenty_when_page_is_three(self):
+    self.assertEqual(20, self.subject.start_at(3))
+
+  @tag('core')
+  def test_start_at_can_recive_per_page_value(self):
+    self.assertEqual(0, self.subject.start_at(1, 15))
+    self.assertEqual(15, self.subject.start_at(2, 15))
+    self.assertEqual(30, self.subject.start_at(3, 15))
+
+  @tag('core')
+  def test_start_at_uses_per_page_attribute(self):
+    self.subject.default_per_page = 25
+    self.assertEqual(0, self.subject.start_at(1))
+    self.assertEqual(25, self.subject.start_at(2))
+    self.assertEqual(50, self.subject.start_at(3))

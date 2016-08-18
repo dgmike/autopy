@@ -1,6 +1,7 @@
 class RequestListController():
   """Module to fetch and filter request"""
   max_per_page = 100
+  default_per_page = 10
 
   def current_page(self, query = False):
     try:
@@ -18,8 +19,9 @@ class RequestListController():
     except:
       return 10
 
-  # TODO: implement tests
-  def start_at(self, current_page, per_page):
+  def start_at(self, current_page = 1, per_page = False):
+    if not per_page:
+      per_page = self.default_per_page
     return (current_page - 1) * per_page
 
   # TODO: implement tests
