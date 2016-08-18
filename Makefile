@@ -16,3 +16,8 @@ requiriments:
 
 clean:
 	rm -rf ./venv ./bower_components
+
+test: pytest
+
+pytest:
+	${PYTHON3} ./manage.py test
