@@ -8,7 +8,7 @@ angular
       self = this;
 
       $http.get('/api/vehicle-types').then(function (response) {
-        self.vehicleTypes = response.data._embedded;
+        self.vehicleTypes = response.data._embedded.vehicle_types;
       });
 
       self.intentToRemove = function intentToRemove(id) {
