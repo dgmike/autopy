@@ -15,56 +15,61 @@ class RequestListController():
     per_page, current_page = self._pagination_args(request.GET)
 
     paginator = Paginator(queryset_filtered, per_page)
+    page = self._fetch_page(paginator, current_page)
+    page_range = self._page_range_links(page, query_filters, self.offset)
+    hal_objects = [obj.to_json_hal() for obj in page.object_list]
 
-    try:
-      page = paginator.page(current_page)
-    except EmptyPage:
-      page = paginator.page(paginator.num_pages)
-
-    result_page = page.object_list
-    total = paginator.count
-    num_pages = paginator.num_pages
-    hal_objects = [obj.to_json_hal() for obj in result_page]
-
-    page_range = []
-
-    start = 0 if page.number - self.offset < 0 else page.number - self.offset
-    end = page.number + self.offset
-
-    for p in paginator.page_range[start:end]:
-      query_page = query_filters.copy()
-      query_page.update({ "page": p })
-      query_page.update({ "per_page": paginator.per_page })
-      page_range.append({
-        "page": p,
-        "current": page.number == p,
-        "filter_args": query_page.urlencode()
-      })
-
-    objects = {
-      "total": total,
-      "num_pages": num_pages,
+    return JsonResponse({
+      "total": paginator.count,
+      "num_pages": paginator.num_pages,
       "per_page": per_page,
       "current_page": page.number,
+      "has_other_pages": page.has_other_pages(),
       "pages": {
+        "previous": self._page_link(page.number - 1, page, query_filters) if page.has_previous() else False,
+        "next": self._page_link(page.number + 1, page, query_filters) if page.has_next() else False,
         "range": page_range
       },
       "_embedded": { self.resource_type: hal_objects },
       "_links": self._links(),
+    })
+
+  def _page_range_links(self, page, query_filters, offset):
+    return [
+      self._page_link(p, page, query_filters)
+      for p in self._page_range(page, offset)
+    ]
+
+  def _page_range(self, page, offset):
+    if page.number - offset < 0: start = 0
+    else: start = page.number - offset
+    end = page.number + offset
+    return page.paginator.page_range[start:end]
+
+  def _page_link(self, p, page, query_filters):
+    query_page = query_filters.copy()
+    query_page.update({ "page": p })
+    query_page.update({ "per_page": page.paginator.per_page })
+    return {
+      "page": p,
+      "current": page.number == p,
+      "filter_args": query_page.urlencode()
     }
 
-    return JsonResponse(objects)
+  def _fetch_page(self, paginator, current_page):
+    try:
+      return paginator.page(current_page)
+    except EmptyPage:
+      return paginator.page(paginator.num_pages)
 
   def _apply_permitted_filters(self, queryset, querydict):
     query_filters = QueryDict(mutable=True)
-
     for permited_filter in self.permited_filters:
       if not permited_filter in querydict:
         continue
       for filter_item in querydict.getlist(permited_filter):
         query_filters.update({permited_filter: filter_item})
         queryset = queryset.filter(**{ permited_filter: filter_item })
-
     return (queryset, query_filters)
 
   def _filter(self, queryset, querydict):
