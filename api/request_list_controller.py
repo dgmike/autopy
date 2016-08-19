@@ -16,8 +16,9 @@ class RequestListController():
 
     paginator = Paginator(queryset_filtered, per_page)
     page = self._fetch_page(paginator, current_page)
-    page_range = self._page_range_links(page, query_filters, self.offset)
     hal_objects = [obj.to_json_hal() for obj in page.object_list]
+
+    page_links = self._page_links(page, query_filters, self.offset)
 
     return JsonResponse({
       "total": paginator.count,
@@ -25,14 +26,31 @@ class RequestListController():
       "per_page": per_page,
       "current_page": page.number,
       "has_other_pages": page.has_other_pages(),
-      "pages": {
-        "previous": self._page_link(page.number - 1, page, query_filters) if page.has_previous() else False,
-        "next": self._page_link(page.number + 1, page, query_filters) if page.has_next() else False,
-        "range": page_range
-      },
+      "pages": page_links,
       "_embedded": { self.resource_type: hal_objects },
       "_links": self._links(),
     })
+
+  def _page_links(self, page, query_filters, offset):
+    next_page = False
+    previous_page = False
+
+    if page.has_previous():
+      previous_page = self._page_link(page.number - 1, page, query_filters)
+    if page.has_next():
+      next_page = self._page_link(page.number + 1, page, query_filters)
+
+    page_range = self._page_range_links(page, query_filters, offset)
+    last_page = self._page_link(page.paginator.num_pages, page, query_filters)
+    first_page = self._page_link(1, page, query_filters)
+
+    return {
+      "first_page": first_page,
+      "previous_page": previous_page,
+      "next_page": next_page,
+      "last_page": last_page,
+      "page_range": page_range
+    }
 
   def _page_range_links(self, page, query_filters, offset):
     return [
@@ -68,8 +86,11 @@ class RequestListController():
       if not permited_filter in querydict:
         continue
       for filter_item in querydict.getlist(permited_filter):
-        query_filters.update({permited_filter: filter_item})
-        queryset = queryset.filter(**{ permited_filter: filter_item })
+        try:
+          queryset = queryset.filter(**{ permited_filter: filter_item })
+          query_filters.update({permited_filter: filter_item})
+        except:
+          pass
     return (queryset, query_filters)
 
   def _filter(self, queryset, querydict):
