@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr data-ng-repeat="vehicleType in $ctrl.vehicleTypes">
+    <tr data-ng-repeat="vehicleType in $ctrl.data._embedded.vehicle_types">
       <td><a href="#!/vehicle-types/{{ vehicleType.id }}">{{ vehicleType.id }}</a></td>
       <td>{{ vehicleType.name }}</td>
       <td>
@@ -26,7 +26,7 @@
           <a href="#!/vehicle-types/{{ vehicleType.id }}/edit" class="btn btn-sm btn-default">
             <i class="glyphicon glyphicon-edit"></i>
           </a>
-          <a href="#" class="btn btn-sm btn-danger" ng-click="$ctrl.intentToRemove(vehicleType.id)">
+          <a href="#" class="btn btn-sm btn-danger" data-ng-click="$ctrl.intentToRemove(vehicleType.id)">
             <i class="glyphicon glyphicon-trash"></i>
           </a>
         </div>
@@ -34,3 +34,60 @@
     </tr>
   </tbody>
 </table>
+
+<div class="row">
+  <div class="col-md-3 p-t-10">
+    <div data-ng-if="$ctrl.data.has_other_pages">
+      Exibindo página {{ $ctrl.data.current_page }} de {{ $ctrl.data.num_pages }}
+    </div>
+    <div data-ng-if="!$ctrl.data.has_other_pages" class="p-t-10">
+      Exibindo todos os resultados
+    </div>
+  </div>
+  <div class="col-md-6">
+    <nav data-ng-if="$ctrl.data.has_other_pages" class="text-center">
+      <ul class="pagination m-t-0">
+        <li data-nd-if="$ctrl.data._embedded.pages.first_page" data-ng-class="{ disabled: $ctrl.data._embedded.pages.first_page.current }">
+          <a href="javascript:void(0)" data-ng-click="$ctrl.goToPage($ctrl.data._embedded.pages.first_page.page)">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+
+        <li data-nd-if="$ctrl.data._embedded.pages.previous_page" data-ng-class="{ disabled: !$ctrl.data._embedded.pages.previous_page }">
+          <a href="javascript:void(0)" data-ng-click="$ctrl.goToPage($ctrl.data._embedded.pages.previous_page.page)">
+            <span aria-hidden="true">&lsaquo;</span>
+          </a>
+        </li>
+
+        <li data-ng-repeat="page_range in $ctrl.data._embedded.pages.page_range" data-ng-class="{ active: page_range.current }">
+          <a href="javascript:void(0)" data-ng-click="$ctrl.goToPage(page_range.page)">
+            {{page_range.page}}
+          </a>
+        </li>
+
+        <li data-nd-if="$ctrl.data._embedded.pages.next_page" data-ng-class="{ disabled: !$ctrl.data._embedded.pages.next_page }">
+          <a href="javascript:void(0)" data-ng-click="$ctrl.goToPage($ctrl.data._embedded.pages.next_page.page)">
+            <span aria-hidden="true">&rsaquo;</span>
+          </a>
+        </li>
+
+        <li data-nd-if="$ctrl.data._embedded.pages.last_page" data-ng-class="{ disabled: $ctrl.data._embedded.pages.last_page.current }">
+          <a href="javascript:void(0)" data-ng-click="$ctrl.goToPage($ctrl.data._embedded.pages.last_page.page)">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-md-3 p-t-10">
+    Exibir
+    <select>
+      <option>5</option>
+      <option>10</option>
+      <option>15</option>
+      <option>20</option>
+      <option>30</option>
+    </select>
+    resultados por página
+  </div>
+</div>

@@ -7,9 +7,20 @@ angular
     controller: function vehicleTypesListController($http) {
       self = this;
 
-      $http.get('/api/vehicle-types').then(function (response) {
-        self.vehicleTypes = response.data._embedded.vehicle_types;
-      });
+      self.currentPage = null;
+
+      self.goToPage = function (page) {
+        var perPage = 20;
+        if (!page || page == self.currentPage) {
+          return;
+        }
+        $http.get('/api/vehicle-types?per_page=' + perPage + '&page=' + page).then(function (response) {
+          self.currentPage = response.data.current_page;
+          self.data = response.data;
+        });
+      };
+
+      self.goToPage(1);
 
       self.intentToRemove = function intentToRemove(id) {
         swal(
