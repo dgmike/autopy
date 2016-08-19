@@ -26,8 +26,10 @@ class RequestListController():
       "per_page": per_page,
       "current_page": page.number,
       "has_other_pages": page.has_other_pages(),
-      "pages": page_links,
-      "_embedded": { self.resource_type: hal_objects },
+      "_embedded": {
+        self.resource_type: hal_objects,
+        "pages": page_links
+      },
       "_links": self._links(),
     })
 
