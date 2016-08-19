@@ -113,3 +113,8 @@ class RequestListControllerTestCase(TestCase):
     self.subject.default_per_page = 15
     query = QueryDict('page=2')
     self.assertEqual((15, 2, 15), self.subject._pagination_args(query))
+
+  @tag('core')
+  def test_filter_is_a_dumy(self):
+    result = self.subject._filter('variable', 'queryset')
+    self.assertEqual('variable', result)
