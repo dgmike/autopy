@@ -12,7 +12,7 @@ class RequestListController():
   def get(self, request):
     query_set = self._apply_permitted_filters(self.queryset, request.GET)
     queryset_filtered, query_filters = self._filter(query_set, request.GET)
-    per_page, current_page, start = self._pagination_args(request.GET)
+    per_page, current_page = self._pagination_args(request.GET)
 
     paginator = Paginator(queryset_filtered, per_page)
 
@@ -89,15 +89,8 @@ class RequestListController():
     except:
       return self.default_per_page
 
-  def _start_at(self, current_page = 1, per_page = False):
-    """Calculate start index based on page and per page information"""
-    if not per_page:
-      per_page = self.default_per_page
-    return (current_page - 1) * per_page
-
   def _pagination_args(self, query = False):
     """Retrieves information for paginate items in models"""
     per_page = self._per_page(query)
     current_page = self._current_page(query)
-    start_at = self._start_at(current_page, per_page)
-    return (per_page, current_page, start_at)
+    return (per_page, current_page)
