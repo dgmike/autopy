@@ -6,7 +6,7 @@ from .request_list_controller import RequestListController
 class VehicleTypeRootController(View, RequestListController):
   queryset = VehicleType.objects.order_by('name')
   resource_type = "vehicle_types"
-  permited_filters = ["name__icontains"]
+  permited_filters = ["id__exact", "name__icontains"]
 
   def _links(self):
     return {
