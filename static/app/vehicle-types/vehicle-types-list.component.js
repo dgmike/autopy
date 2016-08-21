@@ -4,23 +4,15 @@ angular
   .module('vehicleTypes')
   .component('vehicleTypesList', {
     templateUrl: 'static/app/vehicle-types/vehicle-types-list.template.html',
-    controller: function vehicleTypesListController($http) {
+    controller: function vehicleTypesListController($http, $route) {
       self = this;
 
-      self.currentPage = null;
+      console.log($route.current.params)
 
-      self.goToPage = function (page) {
-        var perPage = 20;
-        if (!page || page == self.currentPage) {
-          return;
-        }
-        $http.get('/api/vehicle-types?per_page=' + perPage + '&page=' + page).then(function (response) {
-          self.currentPage = response.data.current_page;
-          self.data = response.data;
-        });
-      };
-
-      self.goToPage(1);
+      $http.get('/api/vehicle-types', {params: $route.current.params}).then(function (response) {
+        self.currentPage = response.data.current_page;
+        self.data = response.data;
+      });
 
       self.intentToRemove = function intentToRemove(id) {
         swal(

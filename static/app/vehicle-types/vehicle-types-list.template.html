@@ -47,34 +47,49 @@
   <div class="col-md-6">
     <nav data-ng-if="$ctrl.data.has_other_pages" class="text-center">
       <ul class="pagination m-t-0">
-        <li data-nd-if="$ctrl.data._embedded.pages.first_page" data-ng-class="{ disabled: $ctrl.data._embedded.pages.first_page.current }">
-          <a href="javascript:void(0)" data-ng-click="$ctrl.goToPage($ctrl.data._embedded.pages.first_page.page)">
+        <li data-ng-class="{ disabled: $ctrl.data._embedded.pages.first_page.current }">
+          <a data-ng-if="!$ctrl.data._embedded.pages.first_page.current" href="#!/vehicle-types?{{ $ctrl.data._embedded.pages.first_page.filter_args }}">
             <span aria-hidden="true">&laquo;</span>
           </a>
+          <span data-ng-if="$ctrl.data._embedded.pages.first_page.current">
+            <span aria-hidden="true">&laquo;</span>
+          </span>
         </li>
 
-        <li data-nd-if="$ctrl.data._embedded.pages.previous_page" data-ng-class="{ disabled: !$ctrl.data._embedded.pages.previous_page }">
-          <a href="javascript:void(0)" data-ng-click="$ctrl.goToPage($ctrl.data._embedded.pages.previous_page.page)">
+        <li data-ng-class="{ disabled: !$ctrl.data._embedded.pages.previous_page }">
+          <a data-ng-if="$ctrl.data._embedded.pages.previous_page" href="#!/vehicle-types?{{ $ctrl.data._embedded.pages.previous_page.filter_args }}">
             <span aria-hidden="true">&lsaquo;</span>
           </a>
+          <span data-ng-if="!$ctrl.data._embedded.pages.previous_page">
+            <span aria-hidden="true">&lsaquo;</span>
+          </span>
         </li>
 
         <li data-ng-repeat="page_range in $ctrl.data._embedded.pages.page_range" data-ng-class="{ active: page_range.current }">
-          <a href="javascript:void(0)" data-ng-click="$ctrl.goToPage(page_range.page)">
+          <a data-ng-if="!page_range.current" href="#!/vehicle-types?{{ page_range.filter_args }}">
             {{page_range.page}}
           </a>
+          <span data-ng-if="page_range.current">
+            {{page_range.page}}
+          </span>
         </li>
 
-        <li data-nd-if="$ctrl.data._embedded.pages.next_page" data-ng-class="{ disabled: !$ctrl.data._embedded.pages.next_page }">
-          <a href="javascript:void(0)" data-ng-click="$ctrl.goToPage($ctrl.data._embedded.pages.next_page.page)">
+        <li data-ng-class="{ disabled: !$ctrl.data._embedded.pages.next_page }">
+          <a data-ng-if="$ctrl.data._embedded.pages.next_page" href="#!/vehicle-types?{{ $ctrl.data._embedded.pages.next_page.filter_args }}">
             <span aria-hidden="true">&rsaquo;</span>
           </a>
+          <span data-ng-if="!$ctrl.data._embedded.pages.next_page">
+            <span aria-hidden="true">&rsaquo;</span>
+          </span>
         </li>
 
-        <li data-nd-if="$ctrl.data._embedded.pages.last_page" data-ng-class="{ disabled: $ctrl.data._embedded.pages.last_page.current }">
-          <a href="javascript:void(0)" data-ng-click="$ctrl.goToPage($ctrl.data._embedded.pages.last_page.page)">
+        <li data-ng-class="{ disabled: $ctrl.data._embedded.pages.last_page.current }">
+          <a data-ng-if="!$ctrl.data._embedded.pages.last_page.current" href="#!/vehicle-types?{{ $ctrl.data._embedded.pages.last_page.filter_args }}">
             <span aria-hidden="true">&raquo;</span>
           </a>
+          <span data-ng-if="$ctrl.data._embedded.pages.last_page.current">
+            <span aria-hidden="true">&raquo;</span>
+          </span>
         </li>
       </ul>
     </nav>
