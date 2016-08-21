@@ -6,13 +6,18 @@ angular
     templateUrl: 'static/app/vehicle-types/vehicle-types-list.template.html',
     controller: function vehicleTypesListController($http, $route) {
       self = this;
-
-      console.log($route.current.params)
+      self.per_page_range = [5, 10, 20, 30];
 
       $http.get('/api/vehicle-types', {params: $route.current.params}).then(function (response) {
+        self.per_page = response.data.per_page;
         self.currentPage = response.data.current_page;
         self.data = response.data;
       });
+
+      self.changePerPage = function changePerPage(qty) {
+        $route.updateParams({page:1, per_page: qty});
+        debugger;
+      }
 
       self.intentToRemove = function intentToRemove(id) {
         swal(
