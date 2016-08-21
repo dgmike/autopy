@@ -6,7 +6,6 @@ angular
     templateUrl: 'static/app/vehicle-types/vehicle-types-list.template.html',
     controller: function vehicleTypesListController($http, $route) {
       self = this;
-      self.per_page_range = [5, 10, 20, 30];
 
       $http.get('/api/vehicle-types', {params: $route.current.params}).then(function (response) {
         self.per_page = response.data.per_page;
