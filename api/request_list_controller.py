@@ -20,12 +20,20 @@ class RequestListController():
 
     page_links = self._page_links(page, query_filters, self.offset)
 
+    params = []
+    for param in request.GET.lists():
+      if len(param[1]) > 1:
+        params.append(param)
+      else:
+        params.append([param[0], param[1][0]])
+
     return JsonResponse({
       "total": paginator.count,
       "num_pages": paginator.num_pages,
       "per_page": per_page,
       "current_page": page.number,
       "has_other_pages": page.has_other_pages(),
+      "params": params,
       "_embedded": {
         self.resource_type: hal_objects,
         "pages": page_links
