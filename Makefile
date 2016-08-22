@@ -2,8 +2,10 @@ PYTHON=`which python3`
 PYTHON3=./venv/bin/python3
 PIP=./venv/bin/pip
 
+MANAGE=${PYTHON3} ./manage.py
+
 run:
-	${PYTHON3} ./manage.py runserver
+	${MANAGE} runserver
 
 setup: virtualenv requiriments migrate
 
@@ -15,7 +17,7 @@ requiriments:
 	bower install
 
 migrate:
-	${PYTHON3} ./manage.py migrate
+	${MANAGE} migrate
 
 clean:
 	rm -rf ./venv ./bower_components
@@ -23,7 +25,7 @@ clean:
 test: pytest
 
 pytest:
-	${PYTHON3} ./manage.py test
+	${MANAGE} test
 
 shell:
-	${PYTHON3} ./manage.py shell
+	${MANAGE} shell
