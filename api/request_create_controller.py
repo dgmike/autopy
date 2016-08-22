@@ -7,7 +7,7 @@ class RequestCreateController():
   def post(self, request):
     form = self._form(request.POST)
     if not form.is_valid():
-      return JsonResponse({"error":form.errors}, status=403)
+      return JsonResponse({"errors":form.errors}, status=403)
 
     saved = form.save()
 

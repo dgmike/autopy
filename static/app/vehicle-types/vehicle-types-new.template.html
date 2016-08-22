@@ -15,13 +15,11 @@
   </div>
 </nav>
 
-<form class="" action="#">
+<form data-ng-submit="$ctrl.intentToSave()" id="create-form">
   <div class="form-group">
     <label for="veicles-types-new-form-name">Nome</label>
-    <input type="text" class="form-control" id="veicles-types-new-form-name">
+    <input type="text" class="form-control" data-ng-model="name" id="veicles-types-new-form-name">
   </div>
 
-  <button type="button" class="btn btn-primary">
-    Salvar
-  </button>
+  <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
