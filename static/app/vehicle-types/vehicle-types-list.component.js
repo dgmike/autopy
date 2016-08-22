@@ -15,7 +15,6 @@ angular
 
       self.changePerPage = function changePerPage(qty) {
         $route.updateParams({page:1, per_page: qty});
-        debugger;
       }
 
       self.intentToRemove = function intentToRemove(id) {
