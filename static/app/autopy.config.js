@@ -3,8 +3,11 @@
 angular
   .module('autopy')
   .config(
-    ['$locationProvider', '$routeProvider',
-    function config($locationProvider, $routeProvider) {
+    ['$locationProvider', '$routeProvider', '$httpProvider',
+    function config($locationProvider, $routeProvider, $httpProvider) {
+      $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+      $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
       $locationProvider.hashPrefix('!');
 
       $routeProvider
