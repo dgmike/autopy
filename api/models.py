@@ -11,6 +11,9 @@ class VehicleType(models.Model):
       "id": self.id,
       "name": self.name,
       "_links": {
-        "self": ("/api/vehicle-types/%s" % self.id)
+        "self": self.self_url()
       }
     }
+
+  def self_url(self):
+    return "/api/vehicle-types/%s" % self.id
