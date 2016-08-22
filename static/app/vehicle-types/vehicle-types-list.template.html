@@ -6,33 +6,45 @@
 
 <hr />
 
-<table class="table table-bordered table-hover table-condensed">
-  <col style="width:5%">
-  <col style="width:70%">
-  <col style="width:15%">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Nome</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr data-ng-repeat="vehicleType in $ctrl.data._embedded.vehicle_types">
-      <td><a href="#!/vehicle-types/{{ vehicleType.id }}">{{ vehicleType.id }}</a></td>
-      <td>{{ vehicleType.name }}</td>
-      <td>
-        <div class="btn-group">
-          <a href="#!/vehicle-types/{{ vehicleType.id }}/edit" class="btn btn-sm btn-default">
-            <i class="glyphicon glyphicon-edit"></i>
-          </a>
-          <a href="#" class="btn btn-sm btn-danger" data-ng-click="$ctrl.intentToRemove(vehicleType.id)">
-            <i class="glyphicon glyphicon-trash"></i>
-          </a>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div data-ng-if="!$ctrl.data._embedded.vehicle_types.length">
+  <div class="alert alert-info">
+    <p>Nenhum registro encontrado.</p>
+  </div>
+</div>
 
-<div data-ng-include="'/static/app/shared/pagination.template.html'"></div>
+<div data-ng-if="$ctrl.data._embedded.vehicle_types.length">
+
+  <table class="table table-bordered table-hover table-condensed">
+    <col style="width:5%">
+    <col style="width:70%">
+    <col style="width:15%">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Data de criação</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-ng-repeat="vehicleType in $ctrl.data._embedded.vehicle_types">
+        <td><a href="#!/vehicle-types/{{ vehicleType.id }}">{{ vehicleType.id }}</a></td>
+        <td>{{ vehicleType.name }}</td>
+        <td>{{ vehicleType.created_at | date :'short' }}</td>
+        <td>
+          <div class="btn-group">
+            <a href="#!/vehicle-types/{{ vehicleType.id }}/edit" class="btn btn-sm btn-default">
+              <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a href="#" class="btn btn-sm btn-danger" data-ng-click="$ctrl.intentToRemove(vehicleType.id)">
+              <i class="glyphicon glyphicon-trash"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div data-ng-include="'/static/app/shared/pagination.template.html'"></div>
+
+</div>
