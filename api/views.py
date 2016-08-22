@@ -4,6 +4,7 @@ from .models import *
 from .forms import *
 from .request_list_controller import RequestListController
 from .request_create_controller import RequestCreateController
+from .request_show_controller import RequestShowController
 
 class VehicleTypeRootController(View, RequestListController, RequestCreateController):
   model = VehicleType
@@ -16,3 +17,6 @@ class VehicleTypeRootController(View, RequestListController, RequestCreateContro
     return {
       "self": { "href": "/api/vehicle-types" }
     }
+
+class VehicleTypeItemController(View, RequestShowController):
+  queryset = VehicleType

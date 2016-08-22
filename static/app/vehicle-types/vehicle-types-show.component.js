@@ -5,14 +5,27 @@ angular
   .component('vehicleTypesShow', {
     templateUrl: 'static/app/vehicle-types/vehicle-types-show.template.html',
     controller: [
-      '$routeParams',
-      function vehicleTypesShowController($routeParams) {
+      '$routeParams', '$http', '$location',
+      function vehicleTypesShowController($routeParams, $http, $location) {
         self = this;
 
-        self.vehicleType = {
-          id: $routeParams.id,
-          name: 'Carro'
-        };
+        $http({
+          method: 'GET',
+          url: '/api/vehicle-types/' + $routeParams.id,
+        })
+        .then(
+          function successResponse(response) {
+            self.vehicleType = response.data;
+          },
+          function errorResponse(response) {
+            if (response.status != 404) {
+              swal('Erro!', 'Ocorreu um problema na sua requisição. Por favor, tente novamente mais tarde.', 'error');
+              return;
+            }
+            swal('Não encontrado', 'Desculpe, mas o registro procurado não foi encontrado.', 'error');
+            $location.path('/vehicle-types');
+          }
+        );
 
         self.intentToRemove = function intentToRemove(id) {
           swal(
