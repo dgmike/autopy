@@ -5,8 +5,8 @@ angular
   .component('vehicleTypesShow', {
     templateUrl: 'static/app/vehicle-types/vehicle-types-show.template.html',
     controller: [
-      '$routeParams', '$http', '$location',
-      function vehicleTypesShowController($routeParams, $http, $location) {
+      '$scope', '$routeParams', '$http', '$location', 'intentToRemoveFactory',
+      function vehicleTypesShowController($scope, $routeParams, $http, $location, intentToRemoveFactory) {
         self = this;
 
         $http({
@@ -15,7 +15,7 @@ angular
         })
         .then(
           function successResponse(response) {
-            self.vehicleType = response.data;
+            $scope.vehicleType = response.data;
           },
           function errorResponse(response) {
             if (response.status != 404) {
@@ -27,24 +27,7 @@ angular
           }
         );
 
-        self.intentToRemove = function intentToRemove(id) {
-          swal(
-            {
-              title:'Remover tipo de veículo',
-              text:'Tem certeza que deseja remover este tipo de veículo? Esta ação não poderá ser desfeita.',
-              showCancelButton: true,
-              confirmButtonColor: "#DD6B55",
-              confirmButtonText: "Sim, remova!",
-              closeOnConfirm: false,
-              showLoaderOnConfirm: true
-            },
-            function(){
-              setTimeout(function(){
-                swal('Sucesso!', 'O registro de tipo de veículo foi removido!', 'success');
-              }, 2000);
-            }
-          );
-        }
+        self.intentToRemove = intentToRemoveFactory('/api/vehicle-types/');
       }
     ]
   });

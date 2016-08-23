@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('vehicleTypes', []);
+angular.module('vehicleTypes', ['garbage']);
