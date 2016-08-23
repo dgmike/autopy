@@ -15,14 +15,12 @@
   </div>
 </nav>
 
-<form class="" action="#">
-  <input type="hidden" value="{{ $ctrl.vehicleType.id }}">
+<form id="edit-form" data-ng-submit="$ctrl.save()">
+  <input type="hidden" data-ng-model="$ctrl.vehicleType.id">
   <div class="form-group">
     <label for="veicles-types-new-form-name">Nome</label>
-    <input type="text" class="form-control" id="veicles-types-new-form-name" value="{{ $ctrl.vehicleType.name }}">
+    <input type="text" class="form-control" name="name" id="veicles-types-new-form-name" data-ng-model="resource.name">
   </div>
 
-  <button type="button" class="btn btn-primary">
-    Salvar
-  </button>
+  <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
