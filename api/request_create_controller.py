@@ -16,8 +16,5 @@ class RequestCreateController():
 
     return response
 
-  def _model(self):
-    return self.model
-
   def _form(self, request):
     return self.form(request)
