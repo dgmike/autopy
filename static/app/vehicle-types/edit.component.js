@@ -3,7 +3,7 @@
 angular
   .module('vehicleTypes')
   .component('vehicleTypesEdit', {
-    templateUrl: 'static/app/vehicle-types/vehicle-types-edit.template.html',
+    templateUrl: 'static/app/vehicle-types/edit.template.html',
     controller: [
       '$routeParams', '$http', '$location', '$httpParamSerializer', '$scope',
       function vehicleTypesEditController($routeParams, $http, $location, $httpParamSerializer, $scope) {

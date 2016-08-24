@@ -3,7 +3,7 @@
 angular
   .module('vehicleTypes')
   .component('vehicleTypesNew', {
-    templateUrl: 'static/app/vehicle-types/vehicle-types-new.template.html',
+    templateUrl: 'static/app/vehicle-types/new.template.html',
     controller: function VehicleTypesNewController($scope, $location, $route, $http, $httpParamSerializer) {
       var self = this;
 

@@ -3,7 +3,7 @@
 angular
   .module('vehicleTypes')
   .component('vehicleTypesList', {
-    templateUrl: 'static/app/vehicle-types/vehicle-types-list.template.html',
+    templateUrl: 'static/app/vehicle-types/list.template.html',
     controller: [
       '$http', '$route', 'intentToRemoveFactory', '$location',
       function vehicleTypesListController($http, $route, intentToRemoveFactory, $location) {

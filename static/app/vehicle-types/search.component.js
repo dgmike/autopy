@@ -3,7 +3,7 @@
 angular
   .module('vehicleTypes')
   .component('vehicleTypesSearch', {
-    templateUrl: 'static/app/vehicle-types/vehicle-types-search.template.html',
+    templateUrl: 'static/app/vehicle-types/search.template.html',
     controller: function vehicleTypesSearchController($location, $rootScope) {
       var self = this;
       self.id__exact = $location.search().id__exact;
