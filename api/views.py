@@ -35,3 +35,20 @@ class ManufacturerRootController(View, AbstractListView, AbstractCreateView):
 class ManufacturerItemController(View, AbstractShowView, AbstractUpdateView, AbstractRemoveView):
   queryset = Manufacturer.objects.filter(deleted_at__isnull=True)
   form = ManufacturerForm
+
+
+class VehicleRootController(View, AbstractListView, AbstractCreateView):
+  model = Vehicle
+  form = VehicleForm
+  queryset = Vehicle.objects.filter(deleted_at__isnull=True).order_by('name')
+  resource_type = "vehicles"
+  permited_filters = ["id__exact", "name__icontains", "vehicle_type__id__exact"]
+
+  def _links(self):
+    return {
+      "self": { "href": "/api/vehicles" }
+    }
+
+class VehicleItemController(View, AbstractShowView, AbstractUpdateView, AbstractRemoveView):
+  queryset = Vehicle.objects.filter(deleted_at__isnull=True)
+  form = VehicleForm

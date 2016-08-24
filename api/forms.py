@@ -28,3 +28,17 @@ class ManufacturerForm(forms.ModelForm):
         'max_length': 'nome muito grande',
       },
     }
+
+class VehicleForm(forms.ModelForm):
+  class Meta:
+    model = Vehicle
+    fields = ['name', 'manufacturer', 'model', 'color', 'rotated', 'motor']
+    labels = {
+      'name': 'nome'
+    }
+    error_messages = {
+      'name': {
+        'required': 'nome é um campo obrigatório',
+        'max_length': 'nome muito grande',
+      },
+    }

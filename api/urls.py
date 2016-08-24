@@ -8,4 +8,7 @@ urlpatterns = [
 
   url(r'^manufacturers/?$', ManufacturerRootController.as_view()),
   url(r'^manufacturers/(?P<pk>[0-9]+)/?$', ManufacturerItemController.as_view()),
+
+  url(r'^vehicles/?$', VehicleRootController.as_view()),
+  url(r'^vehicles/(?P<pk>[0-9]+)/?$', VehicleItemController.as_view()),
 ]

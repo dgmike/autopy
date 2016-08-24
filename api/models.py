@@ -39,7 +39,7 @@ class VehicleType(AbstractBaseModel):
     }
 
   def self_url(self):
-    return "/api/vehicle-types/%s" % self.id
+    return "/api/vehicle-types/%d" % self.id
 
 class Manufacturer(AbstractBaseModel):
   name = models.CharField(max_length=100, db_index=True)
@@ -67,5 +67,43 @@ class Manufacturer(AbstractBaseModel):
     }
 
   def self_url(self):
-    return "/api/manufacturer/%s" % self.id
+    return "/api/manufacturer/%d" % self.id
 
+class Vehicle(AbstractBaseModel):
+  manufacturer = models.ForeignKey('Manufacturer', on_delete=models.PROTECT, db_index=True)
+  name = models.CharField(max_length=100, db_index=True)
+  model = models.CharField(max_length=100, db_index=True)
+  color = models.CharField(max_length=100, db_index=True)
+  rotated = models.PositiveIntegerField(db_index=True, blank=True)
+  motor = models.CharField(max_length=100, db_index=True)
+
+  def __str__(self):
+    return self.name
+
+  def to_json_hal(self):
+    return {
+      "id": self.id,
+      "name": self.name,
+      "model": self.model,
+      "color": self.color,
+      "rotated": self.rotated,
+      "motor": self.motor,
+      "_embedded": {
+        "manufacturer": {
+          "id": self.manufacturer.id,
+          "name": self.manufacturer.name
+        },
+        "vehicle_type": {
+          "id": self.manufacturer.vehicle_type.id,
+          "name": self.manufacturer.vehicle_type.name
+        }
+      },
+      "_links": {
+        "self": self.self_url(),
+        "manufacturer": self.manufacturer.self_url(),
+        "vehicle_type": self.manufacturer.vehicle_type.self_url(),
+      }
+    }
+
+  def self_url(self):
+    return "/api/vehicles/%d" % self.id
