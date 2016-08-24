@@ -18,7 +18,7 @@ class VehicleTypeForm(forms.ModelForm):
 class ManufacturerForm(forms.ModelForm):
   class Meta:
     model = Manufacturer
-    fields = ['name']
+    fields = ['name', 'vehicle_type']
     labels = {
       'name': 'nome'
     }

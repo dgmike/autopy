@@ -26,6 +26,9 @@ angular
         .when('/manufacturers', {
           template: '<manufacturers-list></manufacturers-list>'
         })
+        .when('/manufacturers/new', {
+          template: '<manufacturers-new></manufacturers-new>'
+        })
         .when('/manufacturers/:id', {
           template: '<manufacturers-show></manufacturers-show>'
         })
