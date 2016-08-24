@@ -1,0 +1,5 @@
+from .abstract_create_view import AbstractCreateView
+from .abstract_list_view import AbstractListView
+from .abstract_remove_view import AbstractRemoveView
+from .abstract_show_view import AbstractShowView
+from .abstract_update_view import AbstractUpdateView

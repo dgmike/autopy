@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.http.request import QueryDict
 from django.core.paginator import Paginator, EmptyPage
 
-class RequestListController():
+class AbstractListView():
   """Module to fetch and filter request"""
   max_per_page = 100
   default_per_page = 10

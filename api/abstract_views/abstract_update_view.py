@@ -4,7 +4,7 @@ from django.http import QueryDict
 from django.http import JsonResponse
 from django.http import HttpResponse
 
-class RequestUpdateController():
+class AbstractUpdateView():
   """module to update resource"""
   def put(self, request, pk):
     resource = get_object_or_404(self.queryset, pk=pk)

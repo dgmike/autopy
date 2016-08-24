@@ -1,14 +1,14 @@
 import sys
-sys.path.append("..")
+sys.path.append("../..")
 
 from django.test import TestCase
 from django.test import tag
 from django.http.request import QueryDict
-from api.request_list_controller import RequestListController
+from api.abstract_views import AbstractListView
 
-class RequestListControllerTestCase(TestCase):
+class AbstractListViewTestCase(TestCase):
   def setUp(self):
-    self.subject = RequestListController()
+    self.subject = AbstractListView()
 
   @tag('core')
   def test_respond_current_page(self):

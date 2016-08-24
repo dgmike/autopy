@@ -2,13 +2,9 @@ import math
 from django.views import View
 from .models import *
 from .forms import *
-from .request_list_controller import RequestListController
-from .request_create_controller import RequestCreateController
-from .request_show_controller import RequestShowController
-from .request_update_controller import RequestUpdateController
-from .request_remove_controller import RequestRemoveController
+from .abstract_views import *
 
-class VehicleTypeRootController(View, RequestListController, RequestCreateController):
+class VehicleTypeRootController(View, AbstractListView, AbstractCreateView):
   model = VehicleType
   form = VehicleTypeForm
   queryset = VehicleType.objects.filter(deleted_at__isnull=True).order_by('name')
@@ -20,6 +16,22 @@ class VehicleTypeRootController(View, RequestListController, RequestCreateContro
       "self": { "href": "/api/vehicle-types" }
     }
 
-class VehicleTypeItemController(View, RequestShowController, RequestUpdateController, RequestRemoveController):
+class VehicleTypeItemController(View, AbstractShowView, AbstractUpdateView, AbstractRemoveView):
   queryset = VehicleType.objects.filter(deleted_at__isnull=True)
   form = VehicleTypeForm
+
+class ManufacturerRootController(View, AbstractListView, AbstractCreateView):
+  model = Manufacturer
+  form = ManufacturerForm
+  queryset = Manufacturer.objects.filter(deleted_at__isnull=True).order_by('name')
+  resource_type = "vehicle_types"
+  permited_filters = ["id__exact", "name__icontains"]
+
+  def _links(self):
+    return {
+      "self": { "href": "/api/vehicle-types" }
+    }
+
+class ManufacturerItemController(View, AbstractShowView, AbstractUpdateView, AbstractRemoveView):
+  queryset = Manufacturer.objects.filter(deleted_at__isnull=True)
+  form = ManufacturerForm
