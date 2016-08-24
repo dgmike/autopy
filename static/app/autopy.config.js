@@ -35,6 +35,18 @@ angular
         .when('/manufacturers/:id', {
           template: '<manufacturers-show></manufacturers-show>'
         })
+        .when('/vehicles', {
+          template: '<vehicles-list></vehicles-list>'
+        })
+        .when('/vehicles/new', {
+          template: '<vehicles-new></vehicles-new>'
+        })
+        .when('/vehicles/:id/edit', {
+          template: '<vehicles-edit></vehicles-edit>'
+        })
+        .when('/vehicles/:id', {
+          template: '<vehicles-show></vehicles-show>'
+        })
         .otherwise('/vehicle-types');
     }
   ]);

@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a href="#!/manufacturers/new">Novo Veículo</a></li>
+    </ul>
+    <form class="navbar-form navbar-right" role="search" id="basicSearchForm" data-ng-submit="$ctrl.basicSearch()">
+      <div class="input-group">
+        <input type="text" class="form-control" name="name__icontains" placeholder="Nome" data-ng-value="$ctrl.name__icontains">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+        </span>
+      </div>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="javascript:void(0)" data-toggle="collapse" data-target="#advanced-form" aria-expanded="false">Busca Avançada</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div id="advanced-form" class="panel panel-default collapse" data-ng-class="{ in: $ctrl.search == 'advanced' }">
+  <div class="panel-heading">
+    <h3 class="panel-title">Busca avançada</h3>
+  </div>
+  <div class="panel-body">
+    <form role="search" id="advancedSearchForm" data-ng-submit="$ctrl.advancedSearch()">
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="advanced-form-id">ID</label>
+          <input type="text" class="form-control" id="advanced-form-id" name="id__exact" data-ng-model="$ctrl.id__exact">
+        </div>
+        <div class="form-group col-md-8">
+          <label for="advanced-form-vehicle_type">Tipo de veículo</label>
+          <select id="advanced-form-vehicle_type" class="form-control" data-ng-options="option as option.name for option in vehicle_types" data-ng-model="$ctrl.vehicle_type__id__exact" name="vehicle_type__id__exact">
+            <option></option>
+          </select>
+        </div>
+        <div class="form-group col-md-12">
+          <label for="advanced-form-name">Nome</label>
+          <input type="text" class="form-control" id="advanced-form-name" name="name__icontains" data-ng-model="$ctrl.name__icontains">
+        </div>
+      </div>
+      <button type="submit" type="submit" class="btn btn-primary pull-right">Buscar</button>
+      <br class="clearfix"/>
+    </form>
+  </div>
+</div>

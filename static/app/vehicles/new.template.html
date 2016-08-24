@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>Veículos</h1>
+</div>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="fluid-container">
+    <ul class="navbar-nav nav">
+      <li>
+        <a href="#!/manufacturers">
+          <i class="glyphicon glyphicon-arrow-left"></i>
+          Listagem de Veículos
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<form data-ng-submit="$ctrl.intentToSave()" id="create-form">
+  <div class="form-group">
+    <label for="veicles-types-new-form-name">Tipo de veículo</label>
+    <select name="vehicle_type" class="form-control" data-ng-model="vehicle_type" data-ng-options="option.id as option.name for option in vehicle_types track by option.id"></select>
+  </div>
+
+  <div class="form-group">
+    <label for="veicles-types-new-form-name">Nome</label>
+    <input type="text" class="form-control" data-ng-model="name" id="veicles-types-new-form-name">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>

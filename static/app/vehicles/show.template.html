@@ -1,0 +1,41 @@
+<div class="page-header">
+  <h1>Veículos</h1>
+</div>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="fluid-container">
+    <ul class="navbar-nav nav">
+      <li>
+        <a href="#!/manufacturers">
+          <i class="glyphicon glyphicon-arrow-left"></i>
+          Listagem de Veículos
+        </a>
+    </ul>
+  </li>
+  </div>
+</nav>
+
+<dl class="dl-horizontal">
+  <dt>ID</dt>
+  <dd>{{manufacturer.id}}</dd>
+
+  <dt>Nome</dt>
+  <dd>{{manufacturer.name}}</dd>
+
+  <dt>Tipo</dt>
+  <dd>{{manufacturer._embedded.vehicle_type.name}}</dd>
+
+  <dt>Criado em</dt>
+  <dd>{{ manufacturer.created_at | date :"dd/MM/yyyy 'às' h:mma" }}</dd>
+
+  <dt>Atualizado em</dt>
+  <dd>{{ manufacturer.updated_at | date :"dd/MM/yyyy 'às' h:mma" }}</dd>
+
+</dl>
+
+<hr />
+
+<p>
+  <a href="#!/manufacturers/{{ manufacturer.id }}/edit" class="btn btn-default">Editar</a>
+  <a href="#!/manufacturers/" class="btn btn-sm btn-danger" ng-click="$ctrl.intentToRemove(manufacturer.id)">Apagar</a>
+</p>
