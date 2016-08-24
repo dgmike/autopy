@@ -23,6 +23,9 @@ angular
         .when('/vehicle-types/:id', {
           template: '<vehicle-types-show></vehicle-types-show>'
         })
+        .when('/manufacturers', {
+          template: '<manufacturers-list></manufacturers-list>'
+        })
         .otherwise('/vehicle-types');
     }
   ]);

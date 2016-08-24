@@ -27,14 +27,19 @@
 
     <script src="{% static 'app/lib/garbage.js' %}"></script>
 
-    <script src="{% static 'app/autopy.js' %}"></script>
-    <script src="{% static 'app/autopy.config.js' %}"></script>
     <script src="{% static 'app/vehicle-types/vehicle-types.module.js' %}"></script>
     <script src="{% static 'app/vehicle-types/vehicle-types-search.component.js' %}"></script>
     <script src="{% static 'app/vehicle-types/vehicle-types-list.component.js' %}"></script>
     <script src="{% static 'app/vehicle-types/vehicle-types-show.component.js' %}"></script>
     <script src="{% static 'app/vehicle-types/vehicle-types-new.component.js' %}"></script>
     <script src="{% static 'app/vehicle-types/vehicle-types-edit.component.js' %}"></script>
+
+    <script src="{% static 'app/manufacturers/manufacturers.module.js' %}"></script>
+    <script src="{% static 'app/manufacturers/manufacturers-search.component.js' %}"></script>
+    <script src="{% static 'app/manufacturers/manufacturers-list.component.js' %}"></script>
+
+    <script src="{% static 'app/autopy.js' %}"></script>
+    <script src="{% static 'app/autopy.config.js' %}"></script>
   </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -51,8 +56,8 @@
 
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
-            <li><a href="#">Tipos de veículos</a></li>
-            <li><a href="#">Marcas</a></li>
+            <li><a href="#!/vehicle-types">Tipos de veículos</a></li>
+            <li><a href="#!/manufacturers">Montadoras</a></li>
             <li><a href="#">Veículos</a></li>
           </ul>
         </div>

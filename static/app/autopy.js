@@ -2,5 +2,5 @@
 
 angular
   .module('autopy',
-    ['ngRoute', 'vehicleTypes']
+    ['ngRoute', 'vehicleTypes', 'manufacturers']
   );
