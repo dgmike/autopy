@@ -3,7 +3,7 @@
 angular
   .module('manufacturers')
   .component('manufacturersNew', {
-    templateUrl: 'static/app/manufacturers/manufacturers-new.template.html',
+    templateUrl: 'static/app/manufacturers/new.template.html',
     controller: function ManufacturersTypesNewController($scope, $location, $route, $http, $httpParamSerializer) {
       var self = this;
 

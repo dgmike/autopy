@@ -3,7 +3,7 @@
 angular
   .module('manufacturers')
   .component('manufacturersEdit', {
-    templateUrl: 'static/app/manufacturers/manufacturers-edit.template.html',
+    templateUrl: 'static/app/manufacturers/edit.template.html',
     controller: [
       '$routeParams', '$http', '$location', '$httpParamSerializer', '$scope',
       function manufacturersEditController($routeParams, $http, $location, $httpParamSerializer, $scope) {

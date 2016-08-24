@@ -3,7 +3,7 @@
 angular
   .module('manufacturers')
   .component('manufacturersList', {
-    templateUrl: 'static/app/manufacturers/manufacturers-list.template.html',
+    templateUrl: 'static/app/manufacturers/list.template.html',
     controller: [
       '$http', '$route', 'intentToRemoveFactory', '$location',
       function manufacturersListController($http, $route, intentToRemoveFactory, $location) {

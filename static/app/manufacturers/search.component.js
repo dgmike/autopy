@@ -3,7 +3,7 @@
 angular
   .module('manufacturers')
   .component('manufacturersSearch', {
-    templateUrl: 'static/app/manufacturers/manufacturers-search.template.html',
+    templateUrl: 'static/app/manufacturers/search.template.html',
     controller: function manufacturersSearchController($location, $http, $scope) {
       var self = this;
 
