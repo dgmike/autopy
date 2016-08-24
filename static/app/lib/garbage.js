@@ -26,7 +26,7 @@ angular.module('garbage', [])
                         type: 'success'
                       },
                       function () {
-                        $location.path = base_url;
+                        $location.path = base_url.replace(/\/api\//, '/');
                         setTimeout(function () {
                           $window.location.reload();
                         }, 1000)
