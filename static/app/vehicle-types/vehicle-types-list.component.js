@@ -5,9 +5,12 @@ angular
   .component('vehicleTypesList', {
     templateUrl: 'static/app/vehicle-types/vehicle-types-list.template.html',
     controller: [
-      '$http', '$route', 'intentToRemoveFactory',
-      function vehicleTypesListController($http, $route, intentToRemoveFactory) {
+      '$http', '$route', 'intentToRemoveFactory', '$location',
+      function vehicleTypesListController($http, $route, intentToRemoveFactory, $location) {
         self = this;
+
+        self.base_url = '#!/vehicle-types';
+        self.search = $location.search().search;
 
         $http.get('/api/vehicle-types', {params: $route.current.params}).then(function (response) {
           self.per_page = response.data.per_page;

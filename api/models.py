@@ -44,3 +44,28 @@ class VehicleType(AbstractBaseModel):
 class Manufacturer(AbstractBaseModel):
   name = models.CharField(max_length=100, db_index=True)
   vehicle_type = models.ForeignKey('VehicleType', on_delete=models.PROTECT, db_index=True)
+
+  def __str__(self):
+    return self.name
+
+  def to_json_hal(self):
+    return {
+      "id": self.id,
+      "name": self.name,
+      "created_at": self.created_at,
+      "updated_at": self.updated_at,
+      "_links": {
+        "self": self.self_url(),
+        "manufacturers_item": self.vehicle_type.self_url()
+      },
+      "_embedded": {
+        "vehicle_type": {
+          "id": self.vehicle_type.id,
+          "name": self.vehicle_type.name
+        }
+      }
+    }
+
+  def self_url(self):
+    return "/api/manufacturer/%s" % self.id
+

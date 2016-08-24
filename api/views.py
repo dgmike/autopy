@@ -24,12 +24,12 @@ class ManufacturerRootController(View, AbstractListView, AbstractCreateView):
   model = Manufacturer
   form = ManufacturerForm
   queryset = Manufacturer.objects.filter(deleted_at__isnull=True).order_by('name')
-  resource_type = "vehicle_types"
-  permited_filters = ["id__exact", "name__icontains"]
+  resource_type = "manufacturers"
+  permited_filters = ["id__exact", "name__icontains", "vehicle_type__id__exact"]
 
   def _links(self):
     return {
-      "self": { "href": "/api/vehicle-types" }
+      "self": { "href": "/api/manufacturers" }
     }
 
 class ManufacturerItemController(View, AbstractShowView, AbstractUpdateView, AbstractRemoveView):

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li><a href="#!/vehicle-types/new">Novo tipo de veículo</a></li>
+      <li><a href="#!/vehicle-types/new">Nova montadora</a></li>
     </ul>
     <form class="navbar-form navbar-right" role="search" id="basicSearchForm" data-ng-submit="$ctrl.basicSearch()">
       <div class="input-group">
@@ -28,11 +28,17 @@
       <div class="row">
         <div class="form-group col-md-4">
           <label for="advanced-form-id">ID</label>
-          <input type="text" class="form-control" id="advanced-form-id" name="id__exact" data-ng-value="$ctrl.id__exact">
+          <input type="text" class="form-control" id="advanced-form-id" name="id__exact" data-ng-model="$ctrl.id__exact">
         </div>
         <div class="form-group col-md-8">
+          <label for="advanced-form-vehicle_type">Tipo de veículo</label>
+          <select id="advanced-form-vehicle_type" class="form-control" data-ng-options="option as option.name for option in vehicle_types" data-ng-model="$ctrl.vehicle_type__id__exact" name="vehicle_type__id__exact">
+            <option></option>
+          </select>
+        </div>
+        <div class="form-group col-md-12">
           <label for="advanced-form-name">Nome</label>
-          <input type="text" class="form-control" id="advanced-form-name" name="name__icontains" data-ng-value="$ctrl.name__icontains">
+          <input type="text" class="form-control" id="advanced-form-name" name="name__icontains" data-ng-model="$ctrl.name__icontains">
         </div>
       </div>
       <button type="submit" type="submit" class="btn btn-primary pull-right">Buscar</button>
