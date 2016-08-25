@@ -12,7 +12,6 @@ angular
         self.base_url = '#!/vehicles';
         self.search = $location.search().search;
 
-
         $http.get('/api/vehicles', {params: $route.current.params}).then(function (response) {
           self.per_page = response.data.per_page;
           self.currentPage = response.data.current_page;

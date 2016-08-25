@@ -6,44 +6,53 @@
 
 <hr />
 
-<div data-ng-if="!$ctrl.data._embedded.manufacturers.length">
+<div data-ng-if="!$ctrl.data._embedded.vehicles.length">
   <div class="alert alert-info">
     <p>Nenhum registro encontrado.</p>
   </div>
 </div>
 
-<div data-ng-if="$ctrl.data._embedded.manufacturers.length">
+<div data-ng-if="$ctrl.data._embedded.vehicles.length">
 
   <table class="table table-bordered table-hover table-condensed">
     <col style="width:2%">
-    <col style="width:33%">
-    <col style="width:20%">
+    <col style="width:28%">
+    <col style="width:5%">
+    <col style="width:5%">
+    <col style="width:10%">
+    <col style="width:10%">
     <col style="width:15%">
     <col style="width:15%">
-    <col style="width:15%">
+    <col style="width:10%">
     <thead>
       <tr>
         <th>#</th>
-        <th>Nome</th>
-        <th>Tipo de veículo</th>
+        <th>Fabricante/Modelo</th>
+        <th>Tipo</th>
+        <th>Motor</th>
+        <th>Km rodados</th>
+        <th>Cor</th>
         <th>Data de criação</th>
         <th>Data de atualização</th>
         <th>Ações</th>
       </tr>
     </thead>
     <tbody>
-      <tr data-ng-repeat="manufacturer in $ctrl.data._embedded.manufacturers">
-        <td><a href="#!/manufacturers/{{ manufacturer.id }}">{{ manufacturer.id }}</a></td>
-        <td>{{ manufacturer.name }}</td>
-        <td>{{ manufacturer._embedded.vehicle_type.name }}</td>
-        <td>{{ manufacturer.created_at | date :"dd/MM/yyyy 'às' h:mma" }}</td>
-        <td>{{ manufacturer.updated_at | date :"dd/MM/yyyy 'às' h:mma" }}</td>
+      <tr data-ng-repeat="vehicle in $ctrl.data._embedded.vehicles">
+        <td><a href="#!/vehicles/{{ vehicle.id }}">{{ vehicle.id }}</a></td>
+        <td>{{ vehicle._embedded.manufacturer.name }} / {{ vehicle.model }}</td>
+        <td>{{ vehicle._embedded.vehicle_type.name }}</td>
+        <td>{{ vehicle.motor }}</td>
+        <td>{{ vehicle.rotated }}</td>
+        <td>{{ vehicle.color }}</td>
+        <td>{{ vehicle.created_at | date :"dd/MM/yyyy 'às' h:mma" }}</td>
+        <td>{{ vehicle.updated_at | date :"dd/MM/yyyy 'às' h:mma" }}</td>
         <td>
           <div class="btn-group">
-            <a href="#!/manufacturers/{{ manufacturer.id }}/edit" class="btn btn-sm btn-default">
+            <a href="#!/vehicles/{{ vehicle.id }}/edit" class="btn btn-sm btn-default">
               <i class="glyphicon glyphicon-edit"></i>
             </a>
-            <a class="btn btn-sm btn-danger" data-ng-click="$ctrl.intentToRemove(manufacturer.id)">
+            <a class="btn btn-sm btn-danger" data-ng-click="$ctrl.intentToRemove(vehicle.id)">
               <i class="glyphicon glyphicon-trash"></i>
             </a>
           </div>
