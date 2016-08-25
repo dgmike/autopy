@@ -71,23 +71,23 @@ class Manufacturer(AbstractBaseModel):
 
 class Vehicle(AbstractBaseModel):
   manufacturer = models.ForeignKey('Manufacturer', on_delete=models.PROTECT, db_index=True)
-  name = models.CharField(max_length=100, db_index=True)
   model = models.CharField(max_length=100, db_index=True)
   color = models.CharField(max_length=100, db_index=True)
   rotated = models.PositiveIntegerField(db_index=True, blank=True)
   motor = models.CharField(max_length=100, db_index=True)
 
   def __str__(self):
-    return self.name
+    return self.model
 
   def to_json_hal(self):
     return {
       "id": self.id,
-      "name": self.name,
       "model": self.model,
       "color": self.color,
       "rotated": self.rotated,
       "motor": self.motor,
+      "created_at": self.created_at,
+      "updated_at": self.updated_at,
       "_embedded": {
         "manufacturer": {
           "id": self.manufacturer.id,

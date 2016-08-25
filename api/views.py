@@ -40,9 +40,9 @@ class ManufacturerItemController(View, AbstractShowView, AbstractUpdateView, Abs
 class VehicleRootController(View, AbstractListView, AbstractCreateView):
   model = Vehicle
   form = VehicleForm
-  queryset = Vehicle.objects.filter(deleted_at__isnull=True).order_by('name')
+  queryset = Vehicle.objects.filter(deleted_at__isnull=True).order_by('model')
   resource_type = "vehicles"
-  permited_filters = ["id__exact", "name__icontains", "vehicle_type__id__exact"]
+  permited_filters = ["id__exact", "model__icontains", "vehicle_type__id__exact"]
 
   def _links(self):
     return {

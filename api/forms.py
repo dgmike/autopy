@@ -32,9 +32,9 @@ class ManufacturerForm(forms.ModelForm):
 class VehicleForm(forms.ModelForm):
   class Meta:
     model = Vehicle
-    fields = ['name', 'manufacturer', 'model', 'color', 'rotated', 'motor']
+    fields = ['manufacturer', 'model', 'color', 'rotated', 'motor']
     labels = {
-      'name': 'nome'
+      'model': 'modelo'
     }
     error_messages = {
       'name': {
