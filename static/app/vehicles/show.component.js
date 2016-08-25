@@ -15,7 +15,7 @@ angular
         })
         .then(
           function successResponse(response) {
-            $scope.manufacturer = response.data;
+            $scope.vehicle = response.data;
           },
           function errorResponse(response) {
             if (response.status != 404) {

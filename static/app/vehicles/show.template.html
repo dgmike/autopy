@@ -6,7 +6,7 @@
   <div class="fluid-container">
     <ul class="navbar-nav nav">
       <li>
-        <a href="#!/manufacturers">
+        <a href="#!/vehicles">
           <i class="glyphicon glyphicon-arrow-left"></i>
           Listagem de Veículos
         </a>
@@ -17,25 +17,37 @@
 
 <dl class="dl-horizontal">
   <dt>ID</dt>
-  <dd>{{manufacturer.id}}</dd>
+  <dd>{{vehicle.id}}</dd>
 
-  <dt>Nome</dt>
-  <dd>{{manufacturer.name}}</dd>
+  <dt>Tipo de veículo</dt>
+  <dd>{{vehicle._embedded.vehicle_type.name}}</dd>
 
-  <dt>Tipo</dt>
-  <dd>{{manufacturer._embedded.vehicle_type.name}}</dd>
+  <dt>Montadora</dt>
+  <dd>{{vehicle._embedded.manufacturer.name}}</dd>
+
+  <dt>Modelo</dt>
+  <dd>{{vehicle.model}}</dd>
+
+  <dt>Motor</dt>
+  <dd>{{vehicle.motor}}</dd>
+
+  <dt>Km rodados</dt>
+  <dd>{{vehicle.rotated}}</dd>
+
+  <dt>Cor</dt>
+  <dd>{{vehicle.color}}</dd>
 
   <dt>Criado em</dt>
-  <dd>{{ manufacturer.created_at | date :"dd/MM/yyyy 'às' h:mma" }}</dd>
+  <dd>{{ vehicle.created_at | date :"dd/MM/yyyy 'às' h:mma" }}</dd>
 
   <dt>Atualizado em</dt>
-  <dd>{{ manufacturer.updated_at | date :"dd/MM/yyyy 'às' h:mma" }}</dd>
+  <dd>{{ vehicle.updated_at | date :"dd/MM/yyyy 'às' h:mma" }}</dd>
 
 </dl>
 
 <hr />
 
 <p>
-  <a href="#!/manufacturers/{{ manufacturer.id }}/edit" class="btn btn-default">Editar</a>
-  <a href="#!/manufacturers/" class="btn btn-sm btn-danger" ng-click="$ctrl.intentToRemove(manufacturer.id)">Apagar</a>
+  <a href="#!/vehicles/{{ vehicle.id }}/edit" class="btn btn-default">Editar</a>
+  <a href="#!/vehicles/" class="btn btn-sm btn-danger" ng-click="$ctrl.intentToRemove(vehicle.id)">Apagar</a>
 </p>
