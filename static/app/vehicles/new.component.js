@@ -7,18 +7,35 @@ angular
     controller: function vehiclesTypesNewController($scope, $location, $route, $http, $httpParamSerializer) {
       var self = this;
 
-      self.fields = ['vehicle_type', 'name'];
+      self.fields = ['manufacturer', 'model', 'motor', 'rotated', 'color'];
+
+      $scope.manufacturers = [];
 
       $http.get('/api/vehicle-types')
         .then(function (response) {
           $scope.vehicle_types = response.data._embedded.vehicle_types;
         });
 
+      self.updateVehicleType = function () {
+        $scope.manufacturer = undefined;
+        $scope.manufacturers = [];
+        $http
+          .get('/api/manufacturers?vehicle_type__id__exact=' + $scope.vehicle_type)
+          .then(
+            function successResponse(response) {
+              $scope.manufacturers = response.data._embedded.manufacturers;
+            },
+            function errorResponse(response) {
+              swal('Erro', 'Erro ao resgatar os fabricantes, tente novamente em instantes.')
+            });
+      };
+
       self.intentToSave = function () {
         var params = {};
         $(self.fields).map(function (_k, item) {
           if ($scope[item] && $scope[item].id) {
             params[item] = $scope[item].id;
+            return;
           }
           params[item] = $scope[item];
         });

@@ -27,7 +27,7 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Fabricante/Modelo</th>
+        <th>Montadora/Modelo</th>
         <th>Tipo</th>
         <th>Motor</th>
         <th>Km rodados</th>
@@ -40,7 +40,7 @@
     <tbody>
       <tr data-ng-repeat="vehicle in $ctrl.data._embedded.vehicles">
         <td><a href="#!/vehicles/{{ vehicle.id }}">{{ vehicle.id }}</a></td>
-        <td>{{ vehicle._embedded.manufacturer.name }} / {{ vehicle.model }}</td>
+        <td>{{ vehicle._embedded.manufacturer.name }}/{{ vehicle.model }}</td>
         <td>{{ vehicle._embedded.vehicle_type.name }}</td>
         <td>{{ vehicle.motor }}</td>
         <td>{{ vehicle.rotated }}</td>

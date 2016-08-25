@@ -17,13 +17,34 @@
 
 <form data-ng-submit="$ctrl.intentToSave()" id="create-form">
   <div class="form-group">
-    <label for="veicles-types-new-form-name">Tipo de veículo</label>
-    <select name="vehicle_type" class="form-control" data-ng-model="vehicle_type" data-ng-options="option.id as option.name for option in vehicle_types track by option.id"></select>
+    <label for="veicles-new-form-vehicle_type">Tipo de veículo</label>
+    <select id="veicles-new-form-vehicle_type" name="vehicle_type" class="form-control" data-ng-model="vehicle_type" data-ng-options="option.id as option.name for option in vehicle_types track by option.id" data-ng-change="$ctrl.updateVehicleType()"></select>
   </div>
 
   <div class="form-group">
-    <label for="veicles-types-new-form-name">Nome</label>
-    <input type="text" class="form-control" data-ng-model="name" id="veicles-types-new-form-name">
+    <label for="veicles-new-form-manufacturer">Montadora</label>
+    <div class="form-control text-muted" data-ng-if="!vehicle_type">Selecione um tipo de veículo</div>
+    <select id="veicles-new-form-manufacturer" class="form-control" data-ng-class="{hidden: !vehicle_type}" data-ng-show="!!vehicle_type" data-ng-model="manufacturer" data-ng-options="option.name for option in manufacturers"></select>
+  </div>
+
+  <div class="form-group">
+    <label for="veicles-new-form-model">Modelo</label>
+    <input type="text" class="form-control" data-ng-model="model" id="veicles-new-form-model">
+  </div>
+
+  <div class="form-group">
+    <label for="veicles-new-form-motor">Motor</label>
+    <input type="text" class="form-control" data-ng-model="motor" id="veicles-new-form-motor">
+  </div>
+
+  <div class="form-group">
+    <label for="veicles-new-form-rotated">Km rodados</label>
+    <input type="number" class="form-control" data-ng-model="rotated" id="veicles-new-form-rotated">
+  </div>
+
+  <div class="form-group">
+    <label for="veicles-new-form-color">Cor</label>
+    <input type="text" class="form-control" data-ng-model="color" id="veicles-new-form-color">
   </div>
 
   <button type="submit" class="btn btn-primary">Salvar</button>
